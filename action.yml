@@ -19,7 +19,7 @@ inputs:
   github_gatekeeper:
     description: GitHub username of the reviewer who manages the workflow state
     required: true
-name: Shortcut Move Story
+name: Shortcut Move Story With Done Verification
 runs:
   main: dist/index.js
   using: node16
