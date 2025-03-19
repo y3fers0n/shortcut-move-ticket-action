@@ -13,6 +13,9 @@ inputs:
   shortcut_ready_state_id:
     description: The workflow state where the story should be moved to
     required: true
+  shortcut_done_state_id:
+    description: The workflow state where the story should not be moved anymore
+    required: true
   github_gatekeeper:
     description: GitHub username of the reviewer who manages the workflow state
     required: true

@@ -66,6 +66,7 @@ jobs:
           shortcut_story_prefix: 'sc'
           shortcut_review_state_id: 100000001
           shortcut_ready_state_id: 100000002
+          shortcut_done_state_id: 100000003
           github_gatekeeper: 'Product-Manager'
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -79,6 +80,7 @@ jobs:
 | `shortcut_story_prefix`    | required    | ch      | Shortcut story prefix             |
 | `shortcut_review_state_id` | required    | -       | ID of the "Review State"          |
 | `shortcut_ready_state_id`  | required    | -       | ID of the "Ready State"           |
+| `shortcut_done_state_id`   | required    | -       | ID of the "Done State"            |
 | `github_gatekeeper`        | required    | -       | GitHub Username of the Gatekeeper |
 
 ## Outputs

@@ -20,3 +20,20 @@ export default async function (storyId, targetState) {
     return err
   }
 }
+
+export async function shortcutStoryStateIsDone(storyId, doneStateId) {
+  try {
+    const response = await got.get(`${shortcutStoriesUrl}/${storyId}`, {
+      headers: {
+        'Shortcut-Token': shortcutToken,
+        'Content-Type': 'application/json'
+      },
+      responseType: 'json'
+    })
+    return response.body.workflow_state_id === doneStateId
+  } catch (err) {
+    //
+  }
+
+  return false
+}
