@@ -1,7 +1,9 @@
 import core from '@actions/core'
 import github from '@actions/github'
 import getStoryId from './getStoryId.js'
-import shortcutMoveStoryState from './moveState.js'
+import shortcutMoveStoryState, {
+  shortcutStoryStateIsDone
+} from './moveState.js'
 import determineTargetState from './determineTargetState.js'
 
 async function run() {
@@ -25,6 +27,8 @@ async function run() {
   const shortcutStoryPrefix = core.getInput('shortcut_story_prefix')
   const shortcutTargetReviewStateId = core.getInput('shortcut_review_state_id')
   const shortcutTargetReadyStateId = core.getInput('shortcut_ready_state_id')
+  const shortcutDoneStateId = core.getInput('shortcut_done_state_id')
+
   const githubGatekeeper = core.getInput('github_gatekeeper')
 
   const gh = {
@@ -43,6 +47,12 @@ async function run() {
 
   const targetState = determineTargetState(gh, sc)
   if (!targetState || targetState === null) {
+    return
+  }
+
+  // check the target state is not final state
+
+  if (await shortcutStoryStateIsDone(storyId, parseInt(shortcutDoneStateId))) {
     return
   }
 
